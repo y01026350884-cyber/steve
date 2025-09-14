@@ -55,7 +55,7 @@ export default function SupportPage() {
       {/* ===== 상단 히어로 ===== */}
       <section className="relative h-[240px] md:h-[300px] lg:h-[340px]">
         <Image
-          src="/greeting/hero.png"
+          src="/inquiry.jpg"
           alt="견적문의"
           fill
           className="object-cover"
