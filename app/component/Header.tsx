@@ -3,7 +3,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 
 const menuItems = [
@@ -38,23 +38,30 @@ const menuItems = [
     href: '/support',
     dropdown: [{ title: '문의하기', href: '/support/list' }],
   },
-];
+] as const;
 
 export default function Header() {
-  const [open, setOpen] = useState(false);              // 데스크톱 드롭다운
-  const [mobileOpen, setMobileOpen] = useState(false);  // 모바일 슬라이드 메뉴
+  const [open, setOpen] = useState(false); // 데스크톱 드롭다운
+  const [mobileOpen, setMobileOpen] = useState(false); // 모바일 슬라이드 메뉴
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const pathname = usePathname();
 
-  const isActive = (href: string) =>
-    pathname === href || pathname?.startsWith(href + '/');
+  const isActive = (href: string) => pathname === href || pathname?.startsWith(href + '/');
 
-  // 정렬용 refs (데스크톱 드롭다운 정렬)
+  // ── refs
   const navRef = useRef<HTMLElement | null>(null);
   const btnRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const innerRef = useRef<HTMLDivElement | null>(null);
   const colRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const [shifts, setShifts] = useState<number[]>([0, 0, 0, 0]);
+  const [shifts, setShifts] = useState<number[]>(Array(menuItems.length).fill(0));
+
+  // 공용 ref 세터(콜백이 값을 반환하지 않도록 블록 본문만)
+  const setArrayRef = <T extends HTMLElement>(
+    arrRef: React.MutableRefObject<(T | null)[]>,
+    idx: number,
+  ) => (el: T | null) => {
+    arrRef.current[idx] = el;
+  };
 
   const measure = () => {
     const inner = innerRef.current;
@@ -74,11 +81,15 @@ export default function Header() {
     });
 
     const count = Math.min(btnCenters.length, colCenters.length);
-    const next: number[] = new Array(count)
+    const next: number[] = Array(count)
       .fill(0)
       .map((_, i) => btnCenters[i] - colCenters[i]);
 
-    setShifts(next);
+    setShifts((prev) => {
+      const out = [...prev];
+      for (let i = 0; i < count; i++) out[i] = next[i] || 0;
+      return out;
+    });
   };
 
   // 데스크톱 드롭다운 위치 재측정
@@ -103,10 +114,12 @@ export default function Header() {
     };
   }, [mobileOpen]);
 
-  // 화면이 md 이상으로 커지면 모바일 메뉴 닫기(가끔 남아있는 것 방지)
+  // 화면이 md 이상으로 커지면 모바일 메뉴 닫기
   useEffect(() => {
     const mq = window.matchMedia('(min-width: 768px)');
-    const handler = (e: MediaQueryListEvent) => e.matches && setMobileOpen(false);
+    const handler = (e: MediaQueryListEvent) => {
+      if (e.matches) setMobileOpen(false);
+    };
     mq.addEventListener('change', handler);
     return () => mq.removeEventListener('change', handler);
   }, []);
@@ -143,7 +156,7 @@ export default function Header() {
               return (
                 <Link
                   key={item.title}
-                  ref={(el) => (btnRefs.current[idx] = el)}
+                  ref={setArrayRef<HTMLAnchorElement>(btnRefs, idx)}
                   href={firstHref}
                   className={`px-3 py-2 text-lg font-bold transition-colors ${
                     isActive(item.href)
@@ -181,17 +194,14 @@ export default function Header() {
 
         {/* 데스크톱 드롭다운 (md 이상에서만 노출) */}
         {open && (
-          <div
-            className="absolute left-0 right-0 top-full w-full hidden md:block"
-            onMouseEnter={() => setOpen(true)}
-          >
+          <div className="absolute left-0 right-0 top-full w-full hidden md:block" onMouseEnter={() => setOpen(true)}>
             <div className="border-t border-slate-200 bg-white shadow-[0_10px_40px_rgba(2,6,23,0.08)]">
               <div ref={innerRef} className="px-6 py-6">
                 <div className="flex gap-8 md:gap-16">
                   {menuItems.map((group, gIdx) => (
                     <div
                       key={group.title}
-                      ref={(el) => (colRefs.current[gIdx] = el)}
+                      ref={setArrayRef<HTMLDivElement>(colRefs, gIdx)}
                       style={{
                         transform: `translateX(${shifts[gIdx] || 0}px)`,
                         transition: 'transform 120ms ease-out',
@@ -226,19 +236,12 @@ export default function Header() {
         {mobileOpen && (
           <div className="fixed inset-0 z-[60] md:hidden">
             {/* Dim */}
-            <div
-              className="absolute inset-0 bg-black/40"
-              onClick={() => setMobileOpen(false)}
-            />
+            <div className="absolute inset-0 bg-black/40" onClick={() => setMobileOpen(false)} />
             {/* Panel */}
             <div className="absolute right-0 top-0 h-full w-80 max-w-[85%] bg-white shadow-xl p-6 overflow-y-auto">
               <div className="flex items-center justify-between">
                 <span className="text-lg font-bold">메뉴</span>
-                <button
-                  aria-label="메뉴 닫기"
-                  className="p-2 -m-2"
-                  onClick={() => setMobileOpen(false)}
-                >
+                <button aria-label="메뉴 닫기" className="p-2 -m-2" onClick={() => setMobileOpen(false)}>
                   <svg width="22" height="22" viewBox="0 0 24 24">
                     <path d="M6 6l12 12M18 6l-12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                   </svg>
@@ -261,7 +264,7 @@ export default function Header() {
                             }`}
                             onClick={() => setMobileOpen(false)}
                           >
-                            {sub.title.replace(/\n/g, ' ')}
+                            {sub.title}
                           </Link>
                         </li>
                       ))}

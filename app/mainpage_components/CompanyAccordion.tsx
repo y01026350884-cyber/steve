@@ -241,7 +241,7 @@ function DesktopSticky() {
               <div className="space-y-4">
                 {accordionItems.map((item, index) => (
                   <React.Fragment key={index}>
-                    <div ref={(el) => (titleRefs.current[index] = el)} className="select-none">
+                    <div ref={(el) => {titleRefs.current[index] = el; }} className="select-none">
                       <button onClick={() => handleClick(index)} className="block w-full text-left">
                         <h3
                           className={`text-[80px] leading-[1.1] font-extrabold tracking-tight transition-colors duration-300 ${
