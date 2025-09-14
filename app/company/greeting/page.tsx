@@ -22,7 +22,7 @@ export default function GreetingPage() {
       <section className="relative h-[240px] md:h-[300px] lg:h-[340px]">
         {/* 배경 이미지 */}
         <Image
-          src="/bluee.png" // public/company/hero.jpg
+          src="/hero.png" // public/company/hero.jpg
           alt="회사소개"
           fill
           className="object-cover object-[center_70%]"
