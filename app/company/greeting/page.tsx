@@ -126,7 +126,7 @@ export default function GreetingPage() {
           {/* 오른쪽: 이미지 */}
           <div className="relative w-full h-[260px] sm:h-[360px] lg:h-[520px] rounded-xl overflow-hidden shadow">
             <Image
-              src="/greeting/hero.PNG"
+              src="/greeting/hero.png"
               alt="CEO Greeting"
               fill
               className="object-cover"
