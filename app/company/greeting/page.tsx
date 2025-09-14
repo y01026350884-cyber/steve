@@ -22,8 +22,8 @@ export default function GreetingPage() {
       <section className="relative h-[240px] md:h-[300px] lg:h-[340px]">
         {/* 배경 이미지 */}
         <Image
-          src="/hero.png" // public/company/hero.jpg
-          alt="회사소개"
+          src="/greeting/hero.png" // public/company/hero.jpg
+          alt="회사소개"git
           fill
           className="object-cover object-[center_70%]"
           priority
