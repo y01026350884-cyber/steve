@@ -23,7 +23,7 @@ export default function GreetingPage() {
         {/* 배경 이미지 */}
         <Image
           src="/greeting/hero.png" // public/company/hero.jpg
-          alt="회사소개"git
+          alt="회사소개"
           fill
           className="object-cover object-[center_70%]"
           priority
