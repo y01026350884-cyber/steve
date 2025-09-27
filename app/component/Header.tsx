@@ -31,6 +31,7 @@ const menuItems = [
     dropdown: [
       { title: '레이저 절단기', href: '/machines/lasercutting' },
       { title: '절곡기', href: '/machines/bending' },
+      { title: '샤링기', href: '/machines/shearing_machine' },
     ],
   },
   {
@@ -133,13 +134,13 @@ export default function Header() {
           setHoveredIndex(null);
         }}
       >
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between px-6">
           {/* 로고 */}
           <div className="flex items-center h-16 overflow-hidden">
             <Link href="/" className="flex items-center h-full">
               <Image
                 src="/logoimage.png"
-                alt="금화레이저 로고"
+                alt="금화레이저 로고" 
                 width={200}
                 height={80}
                 priority
@@ -150,7 +151,7 @@ export default function Header() {
           </div>
 
           {/* 상단 메뉴 (데스크톱) */}
-          <nav ref={navRef} className="hidden md:flex items-center gap-8">
+          <nav ref={navRef} className="hidden md:flex items-center gap-8 mr-9">
             {menuItems.map((item, idx) => {
               const firstHref = item.dropdown?.[0]?.href || item.href;
               return (
@@ -158,7 +159,7 @@ export default function Header() {
                   key={item.title}
                   ref={setArrayRef<HTMLAnchorElement>(btnRefs, idx)}
                   href={firstHref}
-                  className={`px-3 py-2 text-lg font-bold transition-colors ${
+                  className={`px-3 py-2 text-xl font-bold transition-colors ${
                     isActive(item.href)
                       ? 'text-blue-600'
                       : 'text-gray-700 hover:text-blue-600'

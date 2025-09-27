@@ -10,6 +10,7 @@ export default function GreetingPage() {
   const tabs = [
     { title: "레이저 절단기", href: "/machines/lasercutting" },
     { title: "절곡기", href: "/machines/bending" },
+    { title: "샤링기", href: "/machines/shearing_machine" },
   ];
 
   return (
@@ -38,25 +39,20 @@ export default function GreetingPage() {
         </div>
       </section>
 
-      {/* ===== 하단 탭바 (2개, 중앙 정렬 + 세로 구분선 + 블루 강조) ===== */}
+      {/* ===== 하단 탭바 (1줄 고정, 균등 너비, 구분선 균등) ===== */}
       <div className="bg-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-30">
-          <nav className="w-full border-b">
-            <ul className="mx-auto grid grid-cols-2 text-center">
-              {tabs.map((tab, index) => {
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <nav className="w-full border-b" aria-label="보유설비 탭">
+            <ul className="flex w-full text-center divide-x divide-gray-300">
+              {tabs.map((tab) => {
                 const isActive = pathname === tab.href;
                 return (
-                  <li
-                    key={tab.href}
-                    className={`${index === 0 ? "border-r border-gray-300" : ""}`}
-                  >
+                  <li key={tab.href} className="flex-1">
                     <Link
                       href={tab.href}
-                      className={`inline-flex h-12 w-full items-center justify-center font-bold text-lg transition-colors duration-200 ${
-                        isActive
-                          ? "text-blue-600"   // ✅ 현재 선택된 항목: 블루 + 볼드
-                          : "text-slate-700 hover:text-blue-600" // ✅ hover 시 확실히 블루로
-                      }`}
+                      className={`inline-flex h-12 w-full items-center justify-center font-bold text-lg whitespace-nowrap transition-colors
+                        ${isActive ? "text-blue-600" : "text-slate-700 hover:text-blue-600"}
+                      `}
                     >
                       {tab.title}
                     </Link>
@@ -67,6 +63,7 @@ export default function GreetingPage() {
           </nav>
         </div>
       </div>
+
 
       {/* ===== 아래부터는 기존 코드 그대로 ===== */}
       <main className="max-w-7xl mx-auto px-6 lg:px-8 py-8 lg:py-12">
@@ -134,50 +131,41 @@ export default function GreetingPage() {
         <section className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-10">
           {/* AMADA HG 1253 */}
           <div className="bg-white rounded-xl shadow p-6 text-center flex flex-col h-full">
-            <div className="w-full h-48 flex items-center justify-center mb-4">
+            <div className="w-full h-64 flex items-center justify-center mb-4">
               <Image
-                src="/cnc/Amada_hg1253.png"   // ✅ public 폴더 경로 (파일명 확인 필요)
+                src="/cnc/Amada_hg1253.png"
                 alt="AMADA HG 1253"
                 width={400}
                 height={300}
                 sizes="(max-width: 768px) 100vw, 400px"
-                className="mx-auto rounded-md object-contain h-full"
+                className="mx-auto rounded-md object-cover h-full" // ✅ 동일 크기 강제
               />
             </div>
             <div className="flex-1">
               <h3 className="text-xl font-bold text-blue-600 mb-2">AMADA HG 1253</h3>
               <p className="text-gray-500 text-sm mb-3">15T · 4M 절곡 가능</p>
-              <p className="text-gray-700 text-sm leading-relaxed">
-                최신 하이브리드 드라이브 기술을 적용한 고성능 절곡기.<br />
-                대형 판재부터 박판까지 정밀한 절곡이 가능하며,<br />
-                균일한 각도 제어로 고품질 성형을 구현.
-              </p>
             </div>
           </div>
 
           {/* AMADA HG 2204 */}
           <div className="bg-white rounded-xl shadow p-6 text-center flex flex-col h-full">
-            <div className="w-full h-48 flex items-center justify-center mb-4">
+            <div className="w-full h-64 flex items-center justify-center mb-4">
               <Image
-                src="/cnc/Amada_hg_2204.jpg"   // ✅ public 폴더 경로 (파일명 확인 필요)
+                src="/cnc/Amada_hg_2204.jpg"
                 alt="AMADA HG 2204"
                 width={400}
                 height={300}
                 sizes="(max-width: 768px) 100vw, 400px"
-                className="mx-auto rounded-md object-contain h-full"
+                className="mx-auto rounded-md object-cover h-full " // ✅ 동일 크기 강제
               />
             </div>
             <div className="flex-1">
               <h3 className="text-xl font-bold text-blue-600 mb-2">AMADA HG 2204</h3>
               <p className="text-gray-500 text-sm mb-3">15T · 4M 절곡 가능</p>
-              <p className="text-gray-700 text-sm leading-relaxed">
-                검증된 신뢰성과 높은 출력 성능을 갖춘 절곡기.<br />
-                복잡한 형상과 두꺼운 소재도 안정적으로 성형 가능하며,<br />
-                다양한 금속 소재에 폭넓은 가공 범위 지원.
-              </p>
             </div>
           </div>
         </section>
+
         {/* ===== 장비별 카드 섹션 끝 ===== */}
       </main>
     </> 
