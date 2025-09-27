@@ -68,12 +68,12 @@ function BusinessCategoryTiles() {
   );
 }
 
-/** 페이지 본체 (Hero + 탭 + 카드) — 반드시 default export */
+/** 페이지 본체 (Hero + 탭 + 카드) */
 export default function BusinessSectorPage() {
-  // ✅ greeting/page.tsx와 동일한 탭바 구성으로 “일치성” 확보
   const tabs = [
     { title: '사업 분야', href: "/business/business_sector" },
     { title: '인증 현황', href: "/business/certification" },
+    { title: '특허 인증', href: "/business/patent" },
   ];
   const pathname = usePathname();
 
@@ -86,23 +86,25 @@ export default function BusinessSectorPage() {
         <div className="relative z-10 flex h-full items-center justify-center text-center text-white px-4">
           <div>
             <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight">사업분야</h1>
-            <p className="mt-2 text-sm md:text-base opacity-95">레이저 정밀 가공 전문 — 산업 전반을 지원합니다.</p>
+            <p className="mt-2 text-sm md:text-base opacity-95">
+              레이저 정밀 가공 전문 — 산업 전반을 지원합니다.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* 하단 탭바 */}
+      {/* 하단 탭바: 항상 한 줄 균등 분배 */}
       <div className="bg-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">{/* ← px-30 → px-8 */}
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <nav className="w-full border-b">
-            <ul className="mx-auto grid grid-cols-2 text-center">
-              {tabs.map((tab, index) => {
+            <ul className="flex w-full text-center divide-x divide-gray-300">
+              {tabs.map((tab) => {
                 const isActive = pathname === tab.href;
                 return (
-                  <li key={tab.href} className={index === 0 ? 'border-r border-gray-300' : ''}>
+                  <li key={tab.href} className="flex-1">
                     <Link
                       href={tab.href}
-                      className={`inline-flex h-12 w-full items-center justify-center font-bold text-lg transition-colors duration-200 ${
+                      className={`inline-flex h-12 w-full items-center justify-center font-bold text-lg whitespace-nowrap transition-colors duration-200 ${
                         isActive ? 'text-blue-600' : 'text-slate-700 hover:text-blue-600'
                       }`}
                     >

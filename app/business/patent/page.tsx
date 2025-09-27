@@ -64,18 +64,15 @@ export default function CertificationPage() {
       {/* ===== 본문 (카드형 인증 목록) ===== */}
       <div className="min-h-screen bg-white">
         <section className="py-16 px-4">
-          <div className="max-w-7xl mx-auto">
+          <div className="max-w-4xl mx-auto">
             {/* 타이틀 */}
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900">
-                금화레이저(주) 공식 인증 현황
+                금화레이저(주) 특허
               </h2>
-              <p className="mt-3 text-gray-600">
-                국가가 인정한 기술력과 신뢰성을 바탕으로 혁신을 선도합니다.
-              </p>
             </div>
 
-            {/* 카드 리스트 */}
+            {/* 카드 리스트 (항상 1개, 가운데 정렬) */}
             <CertGrid />
           </div>
         </section>
@@ -84,43 +81,26 @@ export default function CertificationPage() {
   );
 }
 
-/** 인증 카드 그리드 분리 */
+/** 인증 카드 그리드 (1개만 표시) */
 function CertGrid() {
   const CERTS = [
     {
       img: '/certifications/certi.png',
-      title: '뿌리기업 확인서',
+      title: '특허 등록증',
       items: [
         { k: '인증범위', v: '금속가공 뿌리산업' },
-        { k: '유효기간', v: '2025.06.04 ~ 2028.06.03' },
-        { k: '인증기관', v: '한국산업기술진흥협회(KOITA)' },
-      ],
-    },
-    {
-      img: '/certifications/벤처기업확인서.jpg',
-      title: '벤처기업 인증',
-      items: [
-        { k: '인증범위', v: '기술혁신형 기업' },
-        { k: '유효기간', v: '2025.07.17 ~ 2028.07.16' },
-        { k: '인증기관', v: '중소벤처기업부' },
-      ],
-    },
-    {
-      img: '/certifications/연구개발전담부서인정서.jpg',
-      title: '기업부설 연구전담부서 인증',
-      items: [
-        { k: '인증범위', v: '레이저 가공 기술 연구' },
+        { k: '등록기간', v: '2025.06.04 ~ 2028.06.03' },
         { k: '인증기관', v: '한국산업기술진흥협회(KOITA)' },
       ],
     },
   ] as const;
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div className="flex justify-center">
       {CERTS.map((c) => (
         <article
           key={c.title}
-          className="rounded-xl overflow-hidden border border-slate-200 shadow-sm bg-white"
+          className="w-full max-w-md rounded-xl overflow-hidden border border-slate-200 shadow-sm bg-white"
         >
           {/* 이미지 */}
           <div className="relative w-full bg-white">
@@ -134,11 +114,11 @@ function CertGrid() {
           </div>
 
           {/* 하단 정보 패널 */}
-          <div className="bg-slate-100/70 px-6 py-6">
+          <div className="bg-slate-100/70 px-6 py-6 text-center ">
             <h3 className="text-xl font-extrabold text-slate-900">{c.title}</h3>
             <ul className="mt-3 space-y-2 text-slate-700">
               {c.items.map((it) => (
-                <li key={it.k} className="flex gap-2">
+                <li key={it.k} className="flex gap-2 text=center">
                   <span className="whitespace-nowrap font-semibold text-slate-800">
                     - {it.k} :
                   </span>
