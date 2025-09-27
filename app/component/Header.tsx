@@ -23,7 +23,7 @@ const menuItems = [
     dropdown: [
       { title: '사업분야', href: '/business/business_sector' },
       { title: '인증현황', href: '/business/certification' },
-      { title: '특허 인증', href: '/business/patent' },
+      { title: '특허인증', href: '/business/patent' },
     ],
   },
   {
