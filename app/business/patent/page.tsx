@@ -68,7 +68,7 @@ export default function CertificationPage() {
             {/* 타이틀 */}
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900">
-                금화레이저(주) 특허
+                (주)금화레이저 특허
               </h2>
             </div>
 

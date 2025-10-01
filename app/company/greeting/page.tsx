@@ -117,7 +117,7 @@ export default function GreetingPage() {
               </p>
 
               <div className="mt-8">
-                <p className="font-semibold">금화레이저(주) 대표이사</p>
+                <p className="font-semibold">(주)금화레이저 대표이사</p>
                 <p className="text-gray-800">이 문 수</p>
               </div>
             </div>

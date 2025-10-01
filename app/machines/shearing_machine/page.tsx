@@ -42,12 +42,12 @@ export default function GreetingPage() {
         </div>
       </section>
 
-      {/* ===== 하단 탭바 (모바일 최적화 + 데스크톱 1줄 그리드) ===== */}
+      {/* ===== 하단 탭바 (모바일 최적화 + 데스크톱 1줄 3칸 고정, 색상만 변화) ===== */}
       <div className="bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <nav className="w-full border-b" aria-label="보유설비 탭">
             {/* 모바일: 가로 스크롤 탭 */}
-            <ul className="md:hidden -mx-4 px-4 flex gap-3 overflow-x-auto snap-x snap-mandatory">
+            <ul className="md:hidden -mx-6 px-6 flex gap-3 overflow-x-auto snap-x snap-mandatory">
               {tabs.map((tab) => (
                 <li key={tab.href} className="shrink-0 snap-start">
                   <Link
@@ -65,7 +65,7 @@ export default function GreetingPage() {
               ))}
             </ul>
 
-            {/* 데스크톱(>= md): 회사소개와 동일한 1줄 그리드 */}
+            {/* 데스크톱(>= md): 3칸 고정 + 마지막 칸 제외 세로 구분선 */}
             <ul className="hidden md:grid grid-cols-3 text-center">
               {tabs.map((tab, index) => (
                 <li
@@ -75,7 +75,7 @@ export default function GreetingPage() {
                   <Link
                     href={tab.href}
                     aria-current={isActive(tab.href) ? 'page' : undefined}
-                    className={`inline-flex h-12 w-full items-center justify-center font-bold text-lg transition-colors ${
+                    className={`inline-flex h-12 w-full items-center justify-center text-lg font-bold whitespace-nowrap transition-colors ${
                       isActive(tab.href)
                         ? 'text-blue-600'
                         : 'text-slate-700 hover:text-blue-600'

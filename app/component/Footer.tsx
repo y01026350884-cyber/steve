@@ -40,6 +40,7 @@ export default function Footer() {
             <ul className="space-y-1.5 md:space-y-2 text-gray-300 text-[13px] md:text-sm">
               <li><Link href="/business" className="hover:text-white">사업분야</Link></li>
               <li><Link href="/business/certification" className="hover:text-white">인증현황</Link></li>
+              <li><Link href="/business/patent" className="hover:text-white">특허인증</Link></li>
             </ul>
           </div>
 
@@ -49,6 +50,7 @@ export default function Footer() {
             <ul className="space-y-1.5 md:space-y-2 text-gray-300 text-[13px] md:text-sm">
               <li><Link href="/machines" className="hover:text-white">레이저 절단기</Link></li>
               <li><Link href="/machines/bending" className="hover:text-white">절곡기</Link></li>
+              <li><Link href="/machines/shearing_machine" className="hover:text-white">샤링기</Link></li>
             </ul>
           </div>
 
@@ -63,7 +65,7 @@ export default function Footer() {
 
         {/* 구분선 + 저작권 */}
         <div className="border-t border-gray-700 mt-8 pt-6 md:pt-8 text-center text-gray-400 text-xs md:text-sm">
-          <p>&copy; 2024 금화레이저(주). All rights reserved.</p>
+          <p>&copy; 2025 (주) 금화레이저. All rights reserved.</p>
         </div>
       </div>
     </footer>
