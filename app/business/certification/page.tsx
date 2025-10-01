@@ -68,7 +68,7 @@ export default function CertificationPage() {
             {/* 타이틀 */}
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900">
-                금화레이저(주) 공식 인증 현황
+                (주)금화레이저 공식 인증 현황
               </h2>
               <p className="mt-3 text-gray-600">
                 국가가 인정한 기술력과 신뢰성을 바탕으로 혁신을 선도합니다.

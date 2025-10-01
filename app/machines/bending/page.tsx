@@ -115,7 +115,7 @@ export default function GreetingPage() {
               </p>
               <p>
                 <strong>대형 판재부터 박판까지</strong> 폭넓은 가공 범위를 지원하며, 
-                복잡한 형상과 고난이도 절곡 조건에도 
+                복잡한 형상과 고난이도 절곡 조건에도{" "} 
                 <strong>균일한 각도와 높은 정밀도</strong>를 구현합니다.
               </p>
               <p>

@@ -94,7 +94,7 @@ export default function GreetingPage() {
               <p>금화레이저 홈페이지를 방문해주신 여러분, 반갑습니다.</p>
 
               <p>
-                금화레이저(주)는 2023년 설립되어 <strong>신뢰성과 정밀성</strong>에 대한
+                (주)금화레이저는 2023년 설립되어 <strong>신뢰성과 정밀성</strong>에 대한
                 광범위한 실적으로 다른 회사와 차별화된 <strong>레이저 임가공 전문업체</strong>
                 입니다.
               </p>
